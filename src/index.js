@@ -9,6 +9,8 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
+import { BrowserRouter } from 'react-router-dom'
+
 // connects ApolloClient instance with GraphQL API
 const httpLink = new HttpLink({ uri: 'http://localhost:4000' })
 
@@ -20,9 +22,11 @@ const client = new ApolloClient({
 
 // render App wrapped with ApolloProvider
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </BrowserRouter>
   , document.getElementById('root')
 )
 registerServiceWorker()
